@@ -4,10 +4,11 @@
 typedef unsigned long uintptr_t;
 
 #include <iostream>
+#include "data.hpp"
 
-struct Data{
-	int a;
-};
+// struct Data{
+// 	int a;
+// };
 
 class Serializer{
 	private:

@@ -3,7 +3,7 @@ CC = c++
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 SRC = main.cpp Serialization.cpp
 
-SRCH = Serialization.hpp
+SRCH = Serialization.hpp data.hpp
 
 OBJ = $(SRC:.cpp=.o)
 

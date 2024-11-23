@@ -1,19 +1,31 @@
 #include "Serialization.hpp"
+#include "data.hpp"
 
-int main()
-{
-	Data *s = NULL;
+int main() {
+    // Create a Data object
+    Data originalData(42, "Test Data", 3.14f);
+    std::cout << "Original Data:\n";
+    std::cout << "  ID: " << originalData.id << "\n";
+    std::cout << "  Name: " << originalData.name << "\n";
+    std::cout << "  Value: " << originalData.value << "\n\n";
 
+    // Serialize the Data pointer
+    uintptr_t raw = Serializer::serialize(&originalData);
+    std::cout << "Serialized uintptr_t: " << raw << "\n\n";
 
-	uintptr_t tst1 = Serializer::serialize(s);
-	Data *test2 = Serializer::deserialize(tst1);
+    // Deserialize the uintptr_t back to a Data pointer
+    Data* deserializedData = Serializer::deserialize(raw);
+    std::cout << "Deserialized Data:\n";
+    std::cout << "  ID: " << deserializedData->id << "\n";
+    std::cout << "  Name: " << deserializedData->name << "\n";
+    std::cout << "  Value: " << deserializedData->value << "\n\n";
 
-	// he.deserialize(tst1);
-	if (s == test2)
-		std::cout << "correct\n";
-	else
-		std::cout << "incorrect\n";
-	delete s;
-	delete test2;
-	return 0;
+    // Verify that the original and deserialized pointers are equal
+    if (&originalData == deserializedData) {
+        std::cout << "Success: The deserialized pointer matches the original pointer.\n";
+    } else {
+        std::cout << "Error: The deserialized pointer does not match the original pointer.\n";
+    }
+
+    return 0;
 }
