@@ -5,9 +5,14 @@
 
 int main()
 {
-	Base *tst;
+	// Base *tst;
 
-	tst = generate();
-	identify(tst);
-	identify(*tst);
+	// tst = generate();
+	// identify(tst);
+	// identify(*tst);
+        Base* base = generate();
+        std::cout << "Identifying via pointer: ";
+        identify(base);
+        std::cout << "Identifying via reference: ";
+        identify(*base);
 }
